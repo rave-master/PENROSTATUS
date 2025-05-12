@@ -52,7 +52,7 @@ window.loadDashboard = async function () {
 
       const row = `
         <tr>
-          <td><img src="${data.photoURL || 'https://via.placeholder.com/50'}" alt="Photo" class="w-12 h-12 rounded-full mx-auto"></td>
+          <td><img src="${data.photoURL || 'https://via.placeholder.com/50'}" alt="Photo" class="w-40 h-40 rounded-full mx-auto"></td>
           <td>${data.name}</td>
           <td>${data.designation}</td>
           <td>${data.status?.Monday || ""}</td>
