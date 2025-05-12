@@ -3,26 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DENR-PENRO Personnel Locator</title>
+  <title>PENRO Personnel Locator</title>
   <link rel="icon" href="https://i.imgur.com/ZRlEx8f.png" type="image/x-icon">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/flowbite"></script>
   <script type="module" src="script.js"></script> 
 </head>
-<body class="bg-gray-100 text-gray-800">
 
-    <div class="container mx-auto p-6">
+<body class="bg-gray-100 text-gray-800">
+  <div class="container mx-auto p-6">
     <h1 class="text-4xl font-bold text-center mb-8 animate-bounce">PENRO Personnel Locator</h1>
 
+    <!-- Auth -->
     <div id="auth-section" class="mb-6 text-center space-y-4">
       <input id="email" type="email" placeholder="Email" class="border px-4 py-2 rounded shadow w-full max-w-xs">
       <input id="password" type="password" placeholder="Password" class="border px-4 py-2 rounded shadow w-full max-w-xs">
       <div class="space-x-2">
         <button onclick="register()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Register</button>
         <button onclick="login()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Login</button>
+        <button onclick="logout()" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Logout</button>
       </div>
     </div>
 
+    <!-- Profile Form -->
     <div id="profile-form" class="mb-6 bg-white p-4 rounded shadow-lg hidden">
       <h2 class="text-xl font-semibold mb-4">Profile Setup</h2>
       <input id="name" type="text" placeholder="Full Name" class="w-full mb-2 px-4 py-2 border rounded">
@@ -31,76 +33,55 @@
       <button onclick="submitProfile()" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded w-full">Submit Profile</button>
     </div>
 
+    <!-- Status Form -->
     <div id="status-form" class="mb-6 bg-white p-4 rounded shadow-lg hidden">
-      <h2 class="text-xl font-semibold mb-4">Update Status</h2>
-      <div class="flex space-x-4">
-      <div class="w-1/2 space-y-4">
-        <br>
-        <div class="flex space-x-2 mb-2">
-        <label class="w-full">
-          <span class="block text-sm font-medium text-gray-700">Monday</span>
-          <select id="monday-status" class="w-full px-4 py-2 border rounded">
-          <option>Office</option>
-          <option>Work From Home</option>
-          <option>On Leave</option>
-          </select>
-        </label>
-        </div>
-        <div class="flex space-x-2 mb-2">
-        <label class="w-full">
-          <span class="block text-sm font-medium text-gray-700">Tuesday</span>
-          <select id="tuesday-status" class="w-full px-4 py-2 border rounded">
-          <option>Office</option>
-          <option>Work From Home</option>
-          <option>On Leave</option>
-          </select>
-        </label>
-        </div>
-        <div class="flex space-x-2 mb-2">
-        <label class="w-full">
-          <span class="block text-sm font-medium text-gray-700">Wednesday</span>
-          <select id="wednesday-status" class="w-full px-4 py-2 border rounded">
-          <option>Office</option>
-          <option>Work From Home</option>
-          <option>On Leave</option>
-          </select>
-        </label>
-        </div>
-        <div class="flex space-x-2 mb-2">
-        <label class="w-full">
-          <span class="block text-sm font-medium text-gray-700">Thursday</span>
-          <select id="thursday-status" class="w-full px-4 py-2 border rounded">
-          <option>Office</option>
-          <option>Work From Home</option>
-          <option>On Leave</option>
-          </select>
-        </label>
-        </div>
-        <div class="flex space-x-2 mb-2">
-        <label class="w-full">
-          <span class="block text-sm font-medium text-gray-700">Friday</span>
-          <select id="friday-status" class="w-full px-4 py-2 border rounded">
-          <option>Office</option>
-          <option>Work From Home</option>
-          <option>On Leave</option>
-          </select>
-        </label>
-        </div>
-        <button onclick="updateStatus()" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded w-full">Update</button>
-      </div><br>
-      <div class="w-1/2">
-        <iframe id="video-player" width="680" height="420" id="https://www.youtube.com/embed/nd5V0irz_os" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="rounded shadow"></iframe>
-      </div>
-      </div>
-    </div></div>
+      <h2 class="text-xl font-semibold mb-4">Weekly Status</h2>
+      <div class="space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Status Selectors -->
+          <div>
+            <label>Monday</label>
+            <select id="monday-status" class="w-full border rounded px-2 py-2">
+              <option>Office</option><option>Work From Home</option><option>On Leave</option>
+              <option>Out of Office</option><option>Training</option><option>On-Field</option>
+            </select>
+            <label>Tuesday</label>
+            <select id="tuesday-status" class="w-full border rounded px-2 py-2">
+              <option>Office</option><option>Work From Home</option><option>On Leave</option>
+              <option>Out of Office</option><option>Training</option><option>On-Field</option>
+            </select>
+            <label>Wednesday</label>
+            <select id="wednesday-status" class="w-full border rounded px-2 py-2">
+              <option>Office</option><option>Work From Home</option><option>On Leave</option>
+              <option>Out of Office</option><option>Training</option><option>On-Field</option>
+            </select>
+            <label>Thursday</label>
+            <select id="thursday-status" class="w-full border rounded px-2 py-2">
+              <option>Office</option><option>Work From Home</option><option>On Leave</option>
+              <option>Out of Office</option><option>Training</option><option>On-Field</option>
+            </select>
+            <label>Friday</label>
+            <select id="friday-status" class="w-full border rounded px-2 py-2">
+              <option>Office</option><option>Work From Home</option><option>On Leave</option>
+              <option>Out of Office</option><option>Training</option><option>On-Field</option>
+            </select>
+            <button onclick="updateStatus()" class="mt-4 w-full bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded">Update</button>
+          </div>
 
-    
+          <!-- Embedded Video -->
+          <div>
+            <iframe id="video-player" width="100%" height="315" src="https://www.youtube.com/embed/nd5V0irz_os" frameborder="0" allowfullscreen class="rounded shadow"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dashboard Link -->
     <div id="go-dashboard" class="text-center hidden">
       <a href="dashboard.html" class="inline-block mt-4 bg-indigo-600 hover:bg-indigo-800 text-white py-2 px-6 rounded shadow">
         View Staff Weekly Status
       </a>
     </div>
   </div>
-
 </body>
 </html>
