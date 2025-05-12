@@ -33,23 +33,62 @@
 
     <div id="status-form" class="mb-6 bg-white p-4 rounded shadow-lg hidden">
       <h2 class="text-xl font-semibold mb-4">Update Status</h2>
+      <div class="space-y-4">
       <div class="flex space-x-2 mb-2">
-        <select id="day" class="w-1/2 px-4 py-2 border rounded">
-          <option>Monday</option>
-          <option>Tuesday</option>
-          <option>Wednesday</option>
-          <option>Thursday</option>
-          <option>Friday</option>
-        </select>
-        <select id="status" class="w-1/2 px-4 py-2 border rounded">
+        <label class="w-1/2">
+        <span class="block text-sm font-medium text-gray-700">Monday</span>
+        <select id="monday-status" class="w-full px-4 py-2 border rounded">
           <option>Office</option>
           <option>Work From Home</option>
           <option>On Leave</option>
         </select>
+        </label>
       </div>
+      <div class="flex space-x-2 mb-2">
+        <label class="w-1/2">
+        <span class="block text-sm font-medium text-gray-700">Tuesday</span>
+        <select id="tuesday-status" class="w-full px-4 py-2 border rounded">
+          <option>Office</option>
+          <option>Work From Home</option>
+          <option>On Leave</option>
+        </select>
+        </label>
+      </div>
+      <div class="flex space-x-2 mb-2">
+        <label class="w-1/2">
+        <span class="block text-sm font-medium text-gray-700">Wednesday</span>
+        <select id="wednesday-status" class="w-full px-4 py-2 border rounded">
+          <option>Office</option>
+          <option>Work From Home</option>
+          <option>On Leave</option>
+        </select>
+        </label>
+      </div>
+      <div class="flex space-x-2 mb-2">
+        <label class="w-1/2">
+        <span class="block text-sm font-medium text-gray-700">Thursday</span>
+        <select id="thursday-status" class="w-full px-4 py-2 border rounded">
+          <option>Office</option>
+          <option>Work From Home</option>
+          <option>On Leave</option>
+        </select>
+        </label>
+      </div>
+      <div class="flex space-x-2 mb-2">
+        <label class="w-1/2">
+        <span class="block text-sm font-medium text-gray-700">Friday</span>
+        <select id="friday-status" class="w-full px-4 py-2 border rounded">
+          <option>Office</option>
+          <option>Work From Home</option>
+          <option>On Leave</option>
+        </select>
+        </label>
+      </div>
+      </div><br>
       <button onclick="updateStatus()" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded w-full">Update</button>
     </div>
 
+    
     <div id="go-dashboard" class="text-center hidden">
       <a href="dashboard.html" class="inline-block mt-4 bg-indigo-600 hover:bg-indigo-800 text-white py-2 px-6 rounded shadow">
         View Staff Weekly Status
