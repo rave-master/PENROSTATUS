@@ -11,8 +11,6 @@ import {
   doc,
   setDoc,
   getDoc,
-  collection,
-  getDocs,
   updateDoc,
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 import {
@@ -29,7 +27,6 @@ const firebaseConfig = {
   storageBucket: "locator-66521.appspot.com",
   messagingSenderId: "322028471975",
   appId: "1:322028471975:web:ee77430c76935588187d82",
-  measurementId: "G-S87YVN1RX4",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -37,31 +34,31 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
+// Register
 window.register = function () {
   const email = document.getElementById("email").value.trim();
   const pass = document.getElementById("password").value;
-
   createUserWithEmailAndPassword(auth, email, pass)
     .then(() => alert("Registered successfully!"))
     .catch((err) => alert(err.message));
 };
 
+// Login
 window.login = function () {
   const email = document.getElementById("email").value.trim();
   const pass = document.getElementById("password").value;
-
   signInWithEmailAndPassword(auth, email, pass)
     .then(() => alert("Logged in successfully!"))
     .catch((err) => alert(err.message));
 };
 
+// Logout
 window.logout = function () {
-  signOut(auth)
-    .then(() => location.reload())
-    .catch((err) => alert(err.message));
+  signOut(auth).then(() => location.reload());
 };
 
-onAuthStateChanged(auth, async (user) => {
+// Auth State
+onAuthStateChanged(auth, (user) => {
   if (user) {
     document.getElementById("profile-form").classList.remove("hidden");
     document.getElementById("status-form").classList.remove("hidden");
@@ -69,22 +66,20 @@ onAuthStateChanged(auth, async (user) => {
   }
 });
 
+// Submit Profile
 window.submitProfile = async function () {
   const name = document.getElementById("name").value.trim();
   const designation = document.getElementById("designation").value.trim();
   const photo = document.getElementById("photo").files[0];
   const user = auth.currentUser;
-
   if (!user) return alert("Please log in first.");
-  if (!name || !designation) return alert("Name and Designation are required.");
+  if (!name || !designation) return alert("All fields are required.");
 
   let photoURL = "";
-
   try {
     if (photo) {
       if (!photo.type.startsWith("image/")) return alert("Only image files are allowed.");
       if (photo.size > 5 * 1024 * 1024) return alert("Max file size is 5MB.");
-
       const photoRef = ref(storage, `photos/${user.uid}`);
       await uploadBytes(photoRef, photo);
       photoURL = await getDownloadURL(photoRef);
@@ -104,36 +99,30 @@ window.submitProfile = async function () {
     });
 
     alert("Profile saved successfully!");
-  } catch (error) {
-    console.error("Error saving profile:", error);
-    alert("Error submitting profile. Please try again.");
+  } catch (err) {
+    console.error("Profile error:", err);
+    alert("Failed to submit profile.");
   }
 };
 
+// Update Weekly Status
 window.updateStatus = async function () {
-  const day = document.getElementById("day").value;
-  const status = document.getElementById("status").value;
   const user = auth.currentUser;
-
   if (!user) return alert("Please log in first.");
+  const status = {
+    Monday: document.getElementById("monday-status").value,
+    Tuesday: document.getElementById("tuesday-status").value,
+    Wednesday: document.getElementById("wednesday-status").value,
+    Thursday: document.getElementById("thursday-status").value,
+    Friday: document.getElementById("friday-status").value,
+  };
 
   try {
     const userRef = doc(db, "users", user.uid);
-    const userSnap = await getDoc(userRef);
-
-    if (!userSnap.exists()) return alert("User profile not found.");
-
-    const userData = userSnap.data();
-    const updatedStatus = {
-      ...userData.status,
-      [day]: status,
-    };
-
-    await updateDoc(userRef, { status: updatedStatus });
-
+    await updateDoc(userRef, { status });
     alert("Status updated!");
-  } catch (error) {
-    console.error("Error updating status:", error);
+  } catch (err) {
+    console.error("Status update failed:", err);
     alert("Failed to update status.");
   }
 };
