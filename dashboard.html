@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Staff Weekly Status</title>
+  <link rel="icon" href="https://i.imgur.com/ZRlEx8f.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flowbite"></script>
+  <script type="module" src="dashboard.js"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <div class="container mx-auto p-6">
+    <div class="flex justify-between items-center mb-4">
+      <h1 class="text-3xl font-bold">Staff Weekly Status</h1>
+      <button onclick="logout()" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded">Logout</button>
+    </div>
+    <input id="search" type="text" placeholder="Search staff by name..." oninput="loadDashboard()" class="mb-4 px-4 py-2 border rounded w-full">
+    <div class="overflow-auto">
+      <table class="table-auto w-full text-center text-sm border border-gray-200">
+        <thead class="bg-gray-200 text-gray-700">
+          <tr>
+            <th class="px-4 py-2">Photo</th>
+            <th class="px-4 py-2">Name</th>
+            <th class="px-4 py-2">Designation</th>
+            <th class="px-4 py-2">Mon</th>
+            <th class="px-4 py-2">Tue</th>
+            <th class="px-4 py-2">Wed</th>
+            <th class="px-4 py-2">Thu</th>
+            <th class="px-4 py-2">Fri</th>
+          </tr>
+        </thead>
+        <tbody id="staff-table"></tbody>
+      </table>
+    </div>
+  </div>
+
+</body>
+</html>
