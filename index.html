@@ -28,11 +28,23 @@
     <div id="profile-form" class="mb-6 bg-white p-4 rounded shadow-lg hidden">
       <h2 class="text-xl font-semibold mb-4">Profile Setup</h2>
       <input id="name" type="text" placeholder="Full Name" class="w-full mb-2 px-4 py-2 border rounded">
-      <input id="designation" type="text" placeholder="Designation" class="w-full mb-2 px-4 py-2 border rounded">
+      <input id="designation" type="text" placeholder="Designation-Division/Section" class="w-full mb-2 px-4 py-2 border rounded">
       <input id="photo" type="file" accept="image/*" class="w-full mb-4 border rounded px-4 py-2">
       <button onclick="submitProfile()" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded w-full">Submit Profile</button>
     </div>
 
+     <!-- Date and Time -->
+    <div id="datetime" class="text-gray-600 font-medium"></div>
+    <script>
+      function updateDateTime() {
+        const now = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        document.getElementById('datetime').textContent = now.toLocaleDateString('en-US', options);
+      }
+      setInterval(updateDateTime, 1000);
+      updateDateTime();
+    </script>
+    
     <!-- Status Form -->
     <div id="status-form" class="mb-6 bg-white p-4 rounded shadow-lg hidden">
       <h2 class="text-xl font-semibold mb-4">Weekly Status</h2>
