@@ -52,7 +52,7 @@ window.loadDashboard = async function () {
 
       const row = `
         <tr>
-          <td><img src="${data.photoURL || 'https://via.placeholder.com/50'}" alt="PHOTO" class="w-40 h-40 rounded-full mx-auto border border-black"></td>
+          <td><img src="${data.photoURL || 'https://via.placeholder.com/50'}" alt="PHOTO" class="w-20 h-20 rounded-full mx-auto border border-black"></td>
           <td style="font-size: 20px; font-weight: bold;">${data.name.toUpperCase()}</td>
           <td style="font-size: 18px; font-style: italic;">${data.designation.toUpperCase()}</td>
           <td style="font-size: 16px; font-style: italic;">${data.status?.Monday || ""}</td>
